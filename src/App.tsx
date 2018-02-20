@@ -1,27 +1,32 @@
 import * as React from 'react';
-import Panel from './components/Panel';
-import Group from './components/Group';
-import Card from './components/Card';
+import DemoCarousel from './components/SelectionPanel/components/DemoCarousel';
+import SelectionPanel from './components/SelectionPanel';
+import { SelectionPanelType } from './components/SelectionPanel/SelectionPanelProps';
+// import { panels } from './mock-data';
 import './App.css';
 
 class App extends React.Component {
+  constructor(props: any) {
+    super(props);
+    this.onSelect = this.onSelect.bind(this);
+  }
+  onSelect(data: any) {
+    console.log(data);
+  }
   render() {
-    const onCardSelected = (data: any) => {
-      console.log(data);
-    };
+    const SingleSelectionPanel = SelectionPanel(DemoCarousel);
+    const MultiSelectionPanel = SelectionPanel(DemoCarousel);
     return (
       <div className="App">
-        <Panel>
-          <h2>Your rules-free TV</h2>
-          <Group>
-            <Card onCardSelected={onCardSelected} data={{id: '1', title: '60+ channels', price: '35$'}} />
-            <Card onCardSelected={onCardSelected} data={{id: '2', title: '80+ channels', price: '50$'}} />
-          </Group>
-          <Group>
-            <Card onCardSelected={onCardSelected} data={{id: '3', title: '100+ channels', price: '60$'}} />
-            <Card onCardSelected={onCardSelected} data={{id: '4', title: '120+ channels', price: '70$'}} />
-          </Group>
-        </Panel>
+        <SingleSelectionPanel 
+          options={{type: SelectionPanelType.SINGLE, cardSizes: {width: 295, height: 557} }} 
+          events={{onSelect: this.onSelect}}
+        />
+        <hr/>
+        <MultiSelectionPanel
+          options={{type: SelectionPanelType.MULTI, cardSizes: {width: 295, height: 312}}} 
+          events={{onSelect: this.onSelect}}
+        />
       </div>
     );
   }
