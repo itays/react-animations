@@ -1,5 +1,6 @@
 import * as React from 'react';
-import DemoCarousel from './components/SelectionPanel/components/DemoCarousel';
+import DemoCarouselMotion from './components/SelectionPanel/components/DemoCarouselMotion';
+import DemoCarouselTransition from './components/SelectionPanel/components/DemoCarouselTransition';
 import SelectionPanel from './components/SelectionPanel';
 import { SelectionPanelType } from './components/SelectionPanel/SelectionPanelProps';
 // import { panels } from './mock-data';
@@ -14,17 +15,18 @@ class App extends React.Component {
     console.log(data);
   }
   render() {
-    const SingleSelectionPanel = SelectionPanel(DemoCarousel);
-    const MultiSelectionPanel = SelectionPanel(DemoCarousel);
+    const SingleSelectionMotionPanel = SelectionPanel(DemoCarouselMotion);
+    const SingleSelectionTransitionPanel = SelectionPanel(DemoCarouselTransition);
+    // const MultiSelectionPanel = SelectionPanel(DemoCarouselMotion);
     return (
       <div className="App">
-        <SingleSelectionPanel 
-          options={{type: SelectionPanelType.SINGLE, cardSizes: {width: 295, height: 557} }} 
+        <SingleSelectionMotionPanel 
+          options={{type: SelectionPanelType.SINGLE, cardSizes: {width: 295, height: 557, opacity: 1} }} 
           events={{onSelect: this.onSelect}}
         />
         <hr/>
-        <MultiSelectionPanel
-          options={{type: SelectionPanelType.MULTI, cardSizes: {width: 295, height: 312}}} 
+        <SingleSelectionTransitionPanel
+          options={{type: SelectionPanelType.SINGLE, cardSizes: {width: 295, height: 557, opacity: 1}}} 
           events={{onSelect: this.onSelect}}
         />
       </div>

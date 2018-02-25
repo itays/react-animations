@@ -31,4 +31,5 @@ export enum SelectionPanelType {
 export interface CardSizes {
   width: number;
   height: number;
+  opacity: number;
 }

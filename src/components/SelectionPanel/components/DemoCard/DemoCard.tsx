@@ -17,7 +17,8 @@ export default class DemoCard extends React.Component<DemoCardProps, DemoCardSta
         if (this.props.options && this.props.options.cardSizes) {
             const width = this.props.options.cardSizes.width;
             const height = this.props.options.cardSizes.height;
-            style = {width: `${width}px`, height: `${height}px`};
+            // const opacity = this.props.options.cardSizes.opacity;
+            style = {width: `${width}px`, height: `${height}px`, display: width > 50 ? 'block' : 'none' };
         }
         return (
             <div className="card" style={style}>
